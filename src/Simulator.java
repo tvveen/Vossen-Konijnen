@@ -33,13 +33,6 @@ public class Simulator
     private SimulatorView view;
     
     /**
-     * Define the main class
-     */
-    public static void main(String[] args){
-    	
-    }
-    
-    /**
      * Construct a simulation field with default size.
      */
     public Simulator()
