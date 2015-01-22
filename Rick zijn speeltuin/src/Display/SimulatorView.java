@@ -30,7 +30,6 @@ public class SimulatorView extends JFrame
     // Color used for objects that have no defined color.
     private static final Color UNKNOWN_COLOR = Color.gray;
 
-    private JFrame frame;
     private final String STEP_PREFIX = "Step: ";
     private final String POPULATION_PREFIX = "Population: ";
     private JLabel stepLabel, population;
@@ -48,7 +47,6 @@ public class SimulatorView extends JFrame
      */
     public SimulatorView(int height, int width)
     {
-    	frame = new JFrame("RickMoeder");
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
 
@@ -60,14 +58,12 @@ public class SimulatorView extends JFrame
         
         fieldView = new FieldView(height, width);
 
-        Container contents = frame.getContentPane();
-        frame.setSize(1000, 700);
+        Container contents = getContentPane();
         contents.add(stepLabel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
         pack();
-        frame.setVisible(true);
-        contents.setVisible(true);
+        setVisible(true);
     }
     
     /**
