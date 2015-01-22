@@ -34,6 +34,8 @@ public class ImageViewer {
 		toolbar.add(stepOne);
 		JButton stepHundred = new JButton("Step 100");
 		toolbar.add(stepHundred);
+		JButton Simulatie = new JButton("Sumulatie");
+		toolbar.add(Simulatie);
 		contentPane.add(toolbar, BorderLayout.WEST);
 		
 		JLabel label = new JLabel("I am a label.");
