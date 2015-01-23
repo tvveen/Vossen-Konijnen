@@ -48,6 +48,8 @@ public class SimulatorView extends JFrame
     private FieldStats stats;
     
     private RunThread run;
+    
+    private String stepsText;
 
     /**
      * Create a view of the given width and height.
@@ -82,14 +84,14 @@ public class SimulatorView extends JFrame
     	JButton onestep = new JButton("1 step");
     	onestep.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent step1){
-    			run.oneStep();
+    			run.runStep(1);
     		}
     	});
     	
     	JButton honderdstep = new JButton("100 steps");
     	honderdstep.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent step100){
-    			run.honderdStep();
+    			run.runStep(100);
     		}
     	});
     	
@@ -107,11 +109,30 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
-    	   	
+    	JTextField text = new JTextField(stepsText);
+    	
+    	JButton getText = new JButton("Do steps");
+    	getText.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent doSteps){
+    			int stepsText = Integer.parseInt(text.getText());
+    			run.runStep(stepsText);
+    		}
+    	});
+    	
+    	JButton reset = new JButton("Reset");
+    	reset.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent reset){
+    			run.resetThread();
+    		}
+    	});
+    	
     	Toolbar.add(onestep);
     	Toolbar.add(honderdstep);
     	Toolbar.add(start);
     	Toolbar.add(stop);
+    	Toolbar.add(text);
+    	Toolbar.add(getText);
+    	Toolbar.add(reset);
     	
     	this.add(frame);
     	frame.add(field, BorderLayout.CENTER);

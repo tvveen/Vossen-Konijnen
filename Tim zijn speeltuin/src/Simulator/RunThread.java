@@ -19,7 +19,7 @@ public class RunThread implements Runnable
 			if (Thread.currentThread().isAlive())
 				new Thread(this).start();
 		
-		JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "startThread");
+		JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "Thread started");
 	}
 	
 	
@@ -28,9 +28,14 @@ public class RunThread implements Runnable
 	{
 		runThread = false;
 		
-		JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "stopThread");
+		JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "Thread stopt");
 	}
 	
+	public void resetThread()
+	{
+		runThread = false;
+		Main.getSimulator().reset();
+	}
 	
 	/* De methode die word uitgevoerd door de thread. */
 	@Override
@@ -52,26 +57,14 @@ public class RunThread implements Runnable
 		runThread = false;
 	}
 	
-	public void oneStep()
-	{		
+	public void runStep(int steps){
 		runThread = true;
-		this.steps = 1;
-		
-		if(Thread.currentThread().isAlive()){
-			new Thread(this).start();
-		}
-		
-		JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "1 step");
-	}
-	
-	public void honderdStep(){
-		runThread = true;
-		this.steps = 100;
+		this.steps = steps;
 		
 		if (Thread.currentThread().isAlive()){
 			new Thread(this).start();
 		}
 	
-	JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "100 steps");
+	JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), steps + " step(s)");
 	}
 }
