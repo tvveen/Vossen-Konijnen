@@ -48,8 +48,6 @@ public class SimulatorView extends JFrame
     private FieldStats stats;
     
     private RunThread run;
-    
-    private String stepsText;
 
     /**
      * Create a view of the given width and height.
@@ -73,6 +71,16 @@ public class SimulatorView extends JFrame
         frame.setBorder(new EmptyBorder(10, 10, 10, 10));
         
     	fieldView = new FieldView(height, width);
+    	
+    	JMenuBar menu = new JMenuBar();
+    	menu.setLayout(new BorderLayout());
+    	menu.setBorder(new EmptyBorder(10, 10, 5, 5));
+    	
+    	JMenu menu1 = new JMenu("Menu 1");
+    	
+    	JMenu menu2 = new JMenu("Menu 2");
+    	
+    	JMenu help = new JMenu("Help");
     	
     	JPanel field = new JPanel();
     	field.setLayout(new BorderLayout());
@@ -109,7 +117,7 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
-    	JTextField text = new JTextField(stepsText);
+    	final JTextField text = new JTextField();
     	
     	JButton getText = new JButton("Do steps");
     	getText.addActionListener(new ActionListener(){
@@ -126,6 +134,10 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
+    	menu.add(menu1);
+    	menu.add(menu2);
+    	menu.add(help);
+    	
     	Toolbar.add(onestep);
     	Toolbar.add(honderdstep);
     	Toolbar.add(start);
@@ -134,7 +146,9 @@ public class SimulatorView extends JFrame
     	Toolbar.add(getText);
     	Toolbar.add(reset);
     	
-    	this.add(frame);
+    	this.add(frame, BorderLayout.SOUTH);
+    	this.add(menu, BorderLayout.NORTH);
+    	
     	frame.add(field, BorderLayout.CENTER);
     	frame.add(Toolbar, BorderLayout.WEST);
         field.add(stepLabel, BorderLayout.NORTH);

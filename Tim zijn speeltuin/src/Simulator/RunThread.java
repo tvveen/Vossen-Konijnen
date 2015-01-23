@@ -38,8 +38,7 @@ public class RunThread implements Runnable
 	}
 	
 	/* De methode die word uitgevoerd door de thread. */
-	@Override
-	public void run ()
+	public void run()
 	{			
 		if(steps == 0){
 			while (runThread)
