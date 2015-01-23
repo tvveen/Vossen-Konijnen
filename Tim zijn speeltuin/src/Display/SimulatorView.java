@@ -68,7 +68,7 @@ public class SimulatorView extends JFrame
    		
         JPanel frame = new JPanel();
         frame.setLayout(new BorderLayout());
-        //frame.setBorder(new EmptyBorder(10, 10, 10, 10));
+        frame.setBorder(new EmptyBorder(10, 10, 10, 10));
         
     	fieldView = new FieldView(height, width);
     	
@@ -78,6 +78,21 @@ public class SimulatorView extends JFrame
     	JPanel Toolbar = new JPanel();
     	Toolbar.setLayout(new GridLayout(10, 0));
     	Toolbar.setBorder(new EmptyBorder(20, 10, 20, 10));
+    	
+    	JButton onestep = new JButton("1 step");
+    	onestep.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent step1){
+    			run.oneStep();
+    		}
+    	});
+    	
+    	JButton honderdstep = new JButton("100 steps");
+    	honderdstep.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent step100){
+    			run.honderdStep();
+    		}
+    	});
+    	
     	JButton start = new JButton("Start");
     	start.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent start){
@@ -93,6 +108,8 @@ public class SimulatorView extends JFrame
     	});
     	
     	   	
+    	Toolbar.add(onestep);
+    	Toolbar.add(honderdstep);
     	Toolbar.add(start);
     	Toolbar.add(stop);
     	
