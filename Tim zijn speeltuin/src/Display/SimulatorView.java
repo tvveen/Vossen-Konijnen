@@ -73,8 +73,6 @@ public class SimulatorView extends JFrame
     	fieldView = new FieldView(height, width);
     	
     	JMenuBar menu = new JMenuBar();
-    	menu.setLayout(new BorderLayout());
-    	menu.setBorder(new EmptyBorder(10, 10, 5, 5));
     	
     	JMenu menu1 = new JMenu("Menu 1");
     	
@@ -139,6 +137,8 @@ public class SimulatorView extends JFrame
     	menu.add(help);
     	
     	Toolbar.add(onestep);
+
+    	Toolbar.add(Box.createVerticalGlue());
     	Toolbar.add(honderdstep);
     	Toolbar.add(start);
     	Toolbar.add(stop);
@@ -151,6 +151,7 @@ public class SimulatorView extends JFrame
     	
     	frame.add(field, BorderLayout.CENTER);
     	frame.add(Toolbar, BorderLayout.WEST);
+    	
         field.add(stepLabel, BorderLayout.NORTH);
         field.add(fieldView, BorderLayout.CENTER);
         field.add(population, BorderLayout.SOUTH);        
