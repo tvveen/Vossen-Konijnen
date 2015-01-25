@@ -32,7 +32,7 @@ public class SimulatorView extends JFrame
 	private static final long serialVersionUID = 1L;
 
 	// Colors used for empty locations.
-    private static final Color EMPTY_COLOR = Color.white;
+    private static final Color EMPTY_COLOR = Color.green;
 
     // Color used for objects that have no defined color.
     private static final Color UNKNOWN_COLOR = Color.gray;
@@ -317,5 +317,5 @@ public class SimulatorView extends JFrame
                 }
             }
         }
-    }
+    }   
 }
