@@ -32,7 +32,7 @@ public class SimulatorView extends JFrame
 	private static final long serialVersionUID = 1L;
 
 	// Colors used for empty locations.
-    private static final Color EMPTY_COLOR = Color.green;
+    private static final Color EMPTY_COLOR = Color.WHITE;
 
     // Color used for objects that have no defined color.
     private static final Color UNKNOWN_COLOR = Color.gray;
@@ -79,6 +79,10 @@ public class SimulatorView extends JFrame
     	JMenu menu2 = new JMenu("Menu 2");
     	
     	JMenu help = new JMenu("Help");
+    	
+    	menu.add(menu1);
+    	menu.add(menu2);
+    	menu.add(help);
     	
     	JPanel field = new JPanel();
     	field.setLayout(new BorderLayout());
@@ -132,9 +136,7 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
-    	menu.add(menu1);
-    	menu.add(menu2);
-    	menu.add(help);
+
     	
     	Toolbar.add(onestep);
 

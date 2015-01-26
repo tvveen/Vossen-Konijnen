@@ -1,7 +1,14 @@
 package Display;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import Simulator.Main;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -55,13 +62,119 @@ public class SimulatorView extends JFrame
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
         setLocation(100, 50);
+   		
+        JPanel frame = new JPanel();
+        frame.setLayout(new BorderLayout());
+        frame.setBorder(new EmptyBorder(10, 10, 10, 10));
         
-        fieldView = new FieldView(height, width);
+    	fieldView = new FieldView(height, width);
+    	
+    	JMenuBar menu = new JMenuBar();
+    	
+    	JMenu menu1 = new JMenu("Menu 1");
+    	menu.add(menu1);
+    	
+    	JMenu menu2 = new JMenu("Menu 2");
+    	menu.add(menu2);
+    	
+    	JMenu help = new JMenu("Help");
+    	menu.add(help);
+    	
+    	
+    	JPanel field = new JPanel();
+    	field.setLayout(new BorderLayout());
+    	
+    	
+    	
+    	
+    	JPanel Toolbar = new JPanel();
+    	
+    	Toolbar.setPreferredSize(new Dimension(200, 100));
+    	
+    	Toolbar.setLayout(new GridLayout(5, 2));
+    	Toolbar.setBorder(new EmptyBorder(15, 10, 20, 10));
+    	
+    	JButton onestep = new JButton("1 step");
+    	onestep.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent step1){
+    			Main.getThread().runStep(1);
+    		}
+    	});
+    	
+    	JButton honderdstep = new JButton("100 steps");
+    	honderdstep.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent step100){
+    			Main.getThread().runStep(100);
+    		}
+    	});
+    	
+    	
+    	JButton start = new JButton("Start");
+    	start.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent start){
+    			Main.getThread().startThread();
+    		}
+    	});
+    	
+    	JButton stop = new JButton("Stop");
+    	stop.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent stop){
+    			Main.getThread().stopThread();
+    		}
+    	});
+    	
+    	final JTextField text = new JTextField();
+    	
+    	JButton getText = new JButton("Do steps");
+    	getText.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent doSteps){
+    			try
+    			{ 
+    				/* Het ingevulde nummer proberen op te halen. */
+    				int stepsText	= Integer.valueOf (text.getText());
+    				
+    				Main.getThread().runStep(stepsText);
+    			}
+    			catch (NumberFormatException e)
+    			{
+    				/* Er is geen geldig nummer ingevuld, dus laat foutmelding zien. */
+    			    JOptionPane.showMessageDialog(new JFrame(), "Invalid amount of steps.\nOnly numbers can be used.", "Invalid amount of steps", JOptionPane.ERROR_MESSAGE);
+    			}
+    		}
+    	});
+    	
+    	JButton reset = new JButton("Reset");
+    	reset.addActionListener(new ActionListener(){
+    		public void actionPerformed(ActionEvent reset){
+    			Main.getThread().resetThread();
+    		}
+    	});
+    	
+    	reset.setPreferredSize(new Dimension (100, 100));
+    	
 
-        Container contents = getContentPane();
-        contents.add(stepLabel, BorderLayout.NORTH);
-        contents.add(fieldView, BorderLayout.CENTER);
-        contents.add(population, BorderLayout.SOUTH);
+    	
+    	
+    	Toolbar.add(onestep);
+
+    	//Toolbar.add(Box.createVerticalGlue());
+    	Toolbar.add(honderdstep);
+    	Toolbar.add(start);
+    	Toolbar.add(stop);
+    	Toolbar.add(text);
+    	Toolbar.add(getText);
+    	Toolbar.add(reset);
+    	Toolbar.add(Box.createVerticalGlue());
+    	
+    	this.add(frame, BorderLayout.SOUTH);
+    	this.add(menu, BorderLayout.NORTH);
+    	
+    	frame.add(field, BorderLayout.CENTER);
+    	frame.add(Toolbar, BorderLayout.WEST);
+    	
+        field.add(stepLabel, BorderLayout.NORTH);
+        field.add(fieldView, BorderLayout.CENTER);
+        field.add(population, BorderLayout.SOUTH);        
         pack();
         setVisible(true);
     }
