@@ -14,12 +14,16 @@ public class RunThread implements Runnable
 	/* Methode om the thread te starten. */
 	public void startThread ()
 	{
-		runThread = true;
+		/* Controleren of de thread al draait. Zo ja, return zodat er niet een nieuwe thread geopend word. */
+		if (this.runThread)
+			return;
 		
+		/* Thread laten starten door boolean op true te zetten. */
+		this.runThread = true;
+		
+			/* De thread daadwerkelijk maken en starten. */
 			if (Thread.currentThread().isAlive())
 				new Thread(this).start();
-		
-		//JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "startThread");
 	}
 	
 	
@@ -27,9 +31,8 @@ public class RunThread implements Runnable
 	/* Methode om de thread te stoppen. */
 	public void stopThread ()
 	{
-		runThread = false;
-		
-		//JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), "stopThread");
+		/* Thread stoppen door de boolean op false te zetten. */
+		this.runThread = false;
 	}
 	
 	
@@ -37,13 +40,15 @@ public class RunThread implements Runnable
 	/* Methode om de simulatie een bepaalde aantal steps te laten draaien. */
 	public void runStep (int steps)
 	{
-		this.runThread	= true;
-		this.steps		= steps;
+		/* Controleren of de thread al draait. Zo ja, return zodat er niet een nieuwe thread geopend word. */
+		if (this.runThread)
+			return;
 		
-			if (Thread.currentThread().isAlive())
-				new Thread(this).start();
-	
-		//JOptionPane.showMessageDialog(new JFrame("JOptionPane showMessageDialog example"), steps + " step(s)");
+		/* Aantal steps instellen. */
+		this.steps = steps;
+		
+		/* Thread starten. */
+		this.startThread ();
 	}
 	
 	
@@ -52,7 +57,7 @@ public class RunThread implements Runnable
 	public void resetThread ()
 	{
 		/* De thread op false zetten. */
-		runThread = false;
+		this.runThread = false;
 		
 		/* De simulatie resetten. */
 		Main.getSimulator().reset();
@@ -85,6 +90,9 @@ public class RunThread implements Runnable
 				/* Steps - 1. */
 				steps--;
 			}
+			
+			/* De thread stoppen, zodat hij opnieuw kan worden gestart. */
+			stopThread ();
 		}
 	}
 }
