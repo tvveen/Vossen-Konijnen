@@ -1,5 +1,9 @@
 package Simulator;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class RunThread implements Runnable
 {
 	/* Private boolean om na te gaan of de thread moet runnen of niet. */
@@ -8,6 +12,9 @@ public class RunThread implements Runnable
 	
 	/* Private int, waarin een bepaald aantal steps geplaatst kunnen worden. */
 	private int steps = 0;
+	
+	/* */
+	private ScheduledExecutorService timer =  Executors.newSingleThreadScheduledExecutor ();
 	
 	
 	
@@ -49,8 +56,7 @@ public class RunThread implements Runnable
 		
 		/* Thread starten. */
 		this.startThread ();
-	}
-	
+	}	
 	
 	
 	/* Methode om de simulatie te resetten. */
@@ -59,8 +65,16 @@ public class RunThread implements Runnable
 		/* De thread op false zetten. */
 		this.runThread = false;
 		
-		/* De simulatie resetten. */
-		Main.getSimulator().reset();
+		/* Create new task to delay the rest method. */
+		timer.schedule (new Runnable ()
+		{
+			/* Method that will be executed once the runnable is called. */
+			public void run()
+			{
+				/* De simulatie resetten. */
+				Main.getSimulator().reset();
+			}
+		}, 25, TimeUnit.MILLISECONDS);
 	}
 	
 	

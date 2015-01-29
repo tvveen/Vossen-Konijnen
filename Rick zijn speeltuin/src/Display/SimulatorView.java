@@ -54,16 +54,22 @@ public class SimulatorView extends JFrame
      */
     public SimulatorView(int height, int width)
     {
-        stats = new FieldStats();
-        colors = new LinkedHashMap<Class, Color>();
+        stats	= new FieldStats();
+        colors	= new LinkedHashMap<Class, Color>();
 
         setTitle("Fox and Rabbit Simulation");
-        stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
-        population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
-        setLocation(100, 50);
+        stepLabel	= new JLabel(STEP_PREFIX, JLabel.CENTER);
+        population	= new JLabel(POPULATION_PREFIX, JLabel.CENTER);
+        
+        
+        
+        
+        
+        setLocation (100, 50);
    		
         JPanel frame = new JPanel();
+        
         frame.setLayout(new BorderLayout());
         frame.setBorder(new EmptyBorder(10, 10, 10, 10));
         
@@ -91,10 +97,11 @@ public class SimulatorView extends JFrame
     	
     	Toolbar.setPreferredSize(new Dimension(200, 100));
     	
-    	Toolbar.setLayout(new GridLayout(5, 2));
+    	Toolbar.setLayout (null);
     	Toolbar.setBorder(new EmptyBorder(15, 10, 20, 10));
     	
     	JButton onestep = new JButton("1 step");
+    	onestep.setBounds(0, 10, 90, 25);
     	onestep.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent step1){
     			Main.getThread().runStep(1);
@@ -102,6 +109,7 @@ public class SimulatorView extends JFrame
     	});
     	
     	JButton honderdstep = new JButton("100 steps");
+    	honderdstep.setBounds (100, 10, 90, 25);
     	honderdstep.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent step100){
     			Main.getThread().runStep(100);
@@ -110,6 +118,7 @@ public class SimulatorView extends JFrame
     	
     	
     	JButton start = new JButton("Start");
+    	start.setBounds(0, 45, 90, 25);
     	start.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent start){
     			Main.getThread().startThread();
@@ -117,6 +126,7 @@ public class SimulatorView extends JFrame
     	});
     	
     	JButton stop = new JButton("Stop");
+    	stop.setBounds (100, 45, 90, 25);
     	stop.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent stop){
     			Main.getThread().stopThread();
@@ -124,8 +134,10 @@ public class SimulatorView extends JFrame
     	});
     	
     	final JTextField text = new JTextField();
+    	text.setBounds(0, 80, 90, 25);
     	
     	JButton getText = new JButton("Do steps");
+    	getText.setBounds (100, 80, 90, 25);
     	getText.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent doSteps){
     			try
@@ -144,6 +156,7 @@ public class SimulatorView extends JFrame
     	});
     	
     	JButton reset = new JButton("Reset");
+    	reset.setBounds (0, 115, 90, 25);
     	reset.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent reset){
     			Main.getThread().resetThread();
