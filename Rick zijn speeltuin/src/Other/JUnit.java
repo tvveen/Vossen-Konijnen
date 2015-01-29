@@ -1,8 +1,9 @@
 package Other;
 
 //import static org.junit.Assert.*;
-import org.junit.Test;
+//import org.junit.Test;
 
+<<<<<<< HEAD
 import Simulator.Main;
 import Simulator.Simulator;
 import Simulator.RunThread;
@@ -13,6 +14,14 @@ public class JUnit {
 	 * Test of de gehele simulatie kan worden gecompileerd 
 	 * door middel van de Main methode
 	 */
+=======
+//import Simulator.Main;
+//import Simulator.Simulator;
+/*
+public class JUnit {
+
+
+>>>>>>> origin/master
 	@Test
 	public void testMain() {
 		String[] testArgs = new String[] {};
@@ -48,3 +57,4 @@ public class JUnit {
 	}
 
 }
+*/
