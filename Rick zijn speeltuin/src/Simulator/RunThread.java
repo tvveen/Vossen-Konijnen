@@ -95,58 +95,50 @@ public class RunThread implements Runnable
 	@Override
 	public void run ()
 	{
+		/* Een infinite boolean aanmaken. */
+		boolean infinite = true;
+		
 		/* Kijken of de thread oneindig moet draaien of niet. */
-		if (steps == 0)
-		{
-			/* Een loop maken, die net zo lang draait tot runThread op false word gezet. */
-			while (runThread)
-			{
-				try
-				{
-					/* Daadwerkelijk een stap vooruit */
-					Main.getSimulator().simulateOneStep ();
-				
-					/* Kijken of de thread moet slapen. */
-					if (this.threadSleep != 0)
-					{
-						/* De thread laten slapen voor de ingestelde milisecondes. */
-						Thread.sleep (this.threadSleep);
-					}
-				}
-				catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-		else
-		{
-			/* Een loop maken, die net zo lang draait tot runThread false is, of het aantal steps 0 is. */
-			while (runThread && steps > 0)
-			{
-				try
-				{
-					/* Daadwerkelijk een stap vooruit */
-					Main.getSimulator().simulateOneStep ();
-					
-					/* Steps - 1. */
-					steps--;
-					
-					/* Kijken of de thread moet slapen. */
-					if (this.threadSleep != 0)
-					{
-						/* De thread laten slapen voor de ingestelde milisecondes. */
-						Thread.sleep (this.threadSleep);
-					}
-				}
-				catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
-			}
+		if (steps != 0)
+			infinite = false;
 			
-			/* De thread stoppen, zodat hij opnieuw kan worden gestart. */
-			stopThread ();
+		/* Een loop maken, die net zo lang draait tot runThread op false word gezet. */
+		while (this.runThread)
+		{
+			try
+			{
+				/* Daadwerkelijk een stap vooruit */
+				Main.getSimulator().simulateOneStep ();
+			
+				/* Kijken of de thread moet slapen. */
+				if (this.threadSleep != 0)
+				{
+					/* De thread laten slapen voor de ingestelde milisecondes. */
+					Thread.sleep (this.threadSleep);
+				}
+				
+				/* Als infinite op false staat, en de steps op 0 staat, zet de thread uit. */
+				if (!infinite && steps == 0)
+				{
+					/* Laat de thread daadwerkelijk stoppen. */
+					this.runThread = false;
+				}
+				
+				
+				/* Kijken of steps meer is dan 0, zo ja, haal er één af. */
+				if (steps > 0)
+				{
+					/* Haal een step eraf. */
+					steps--;
+				}				
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
 		}
+		
+		/* De thread stoppen, zodat hij opnieuw kan worden gestart. */
+		stopThread ();
 	}
 }
