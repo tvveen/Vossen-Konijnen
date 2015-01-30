@@ -3,6 +3,8 @@ package Display;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -60,14 +62,21 @@ public class SimulatorView extends JFrame
         stats	= new FieldStats();
         colors	= new LinkedHashMap<Class, Color>();
 
-        setTitle("Fox and Rabbit Simulation");
+        setTitle ("Fox and Rabbit Simulatie");
         
         stepLabel	= new JLabel(STEP_PREFIX, JLabel.CENTER);
         population	= new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
-        
-        
-        
+        /* Window listener maken, zodat de windowClosing event kan worden opgevangen. */
+        addWindowListener (new WindowAdapter ()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+            	/* Zodra de jFrame word afgesloten, word eerst de thread gestopt. Indien dit niet gebeurd, zal het schermpje opnieuw worden geopent. */
+            	Main.getThread().stopThread();
+            }
+        });
         
         setLocation (100, 50);
    		
@@ -80,14 +89,82 @@ public class SimulatorView extends JFrame
     	
     	JMenuBar menu = new JMenuBar();
     	
+    	
+    	
     	JMenu menu1 = new JMenu("Menu 1");
     	menu.add(menu1);
     	
-    	JMenu menu2 = new JMenu("Menu 2");
-    	menu.add(menu2);
+    	
+    	
+    	
+    	
+    	/*
+    	 * Menu voor de views.
+    	 */
+    	JMenu menuViews = new JMenu ("Views");
+    	
+    	JMenuItem viewHistog = new JMenuItem ("Histogram");
+    	JMenuItem viewCirkel = new JMenuItem ("Cirkeldiagram");
+    	JMenuItem viewHistor = new JMenuItem ("Historische weergave");
+    	//openMenuItem.addActionListener(this);
+    	
+		viewHistog.addActionListener (new ActionListener ()
+		{
+			public void actionPerformed (ActionEvent action)
+			{
+				JFrame frame = new JFrame();
+				
+				frame.setTitle ("Histogram");
+				
+				frame.setSize (500, 300);
+				
+				frame.setVisible (true);
+			}
+		});
+		
+		viewCirkel.addActionListener (new ActionListener ()
+		{
+			public void actionPerformed (ActionEvent action)
+			{
+				JFrame frame = new JFrame();
+				
+				frame.setTitle ("Cirkeldiagram");
+				
+				frame.setSize (500, 300);
+				
+				frame.setVisible (true);
+			}
+		});
+		
+		viewHistor.addActionListener (new ActionListener ()
+		{
+			public void actionPerformed (ActionEvent action)
+			{
+				JFrame frame = new JFrame();
+				
+				frame.setTitle ("Historische weergave");
+				
+				frame.setSize (500, 300);
+				
+				frame.setVisible (true);
+			}
+		});
+    	
+    	
+    	menuViews.add (viewHistog);
+    	menuViews.add (viewCirkel);
+    	menuViews.add (viewHistor);
+    	
+    	menu.add (menuViews);
+    	
+    	
+    	
     	
     	JMenu help = new JMenu("Help");
     	menu.add(help);
+    	
+    	
+    	
     	
     	
     	JPanel field = new JPanel();
