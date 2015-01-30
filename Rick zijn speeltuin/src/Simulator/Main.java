@@ -18,10 +18,10 @@ public class Main
 		final JFrame parent = new JFrame();
 		
 		/* Default hoogte van het venster. */
-		int height	= 120;
+		int height	= 80;
 		
 		/* Default breedte van het venster. */
-		int width	= 80;
+		int width	= 120;
 		
 		
 		/* Controleren of er een cijfer in gevuld is of niet. */
@@ -49,7 +49,7 @@ public class Main
 		
 		
 		/* Nieuwe simulator maken met de ingevulde (of default) gegevens. */
-		Main.simulator = new Simulator (width, height);
+		Main.simulator = new Simulator (height, width);
 		
 		/* De Thread variabele initialiseren. */
 		Main.thread = new RunThread ();

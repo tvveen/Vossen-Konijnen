@@ -6,9 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Simulator.Main;
 
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -155,6 +158,7 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
+    	
     	JButton reset = new JButton("Reset");
     	reset.setBounds (0, 115, 90, 25);
     	reset.addActionListener(new ActionListener(){
@@ -163,20 +167,36 @@ public class SimulatorView extends JFrame
     		}
     	});
     	
-    	reset.setPreferredSize(new Dimension (100, 100));
     	
-
+    	
+    	JSlider framesPerSecond = new JSlider(JSlider.HORIZONTAL, 0, 200, 0);
+    	framesPerSecond.setBounds (0, 160, 190, 25);
+    	framesPerSecond.addChangeListener(new ChangeListener () {
+    		public void stateChanged(ChangeEvent e){
+    			JSlider theJSlider = (JSlider) e.getSource();
+    			
+    			Main.getThread().setThreadSleep (theJSlider.getValue());
+    		}
+    	});
+    	
+    	Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+    	
+    	labelTable.put (0, new JLabel("0ms"));
+    	labelTable.put (100, new JLabel("100ms"));
+    	labelTable.put (200, new JLabel("200ms"));
+    	
+    	framesPerSecond.setLabelTable (labelTable);
+    	framesPerSecond.setPaintLabels (true);
     	
     	
     	Toolbar.add(onestep);
-
-    	//Toolbar.add(Box.createVerticalGlue());
     	Toolbar.add(honderdstep);
     	Toolbar.add(start);
     	Toolbar.add(stop);
     	Toolbar.add(text);
     	Toolbar.add(getText);
     	Toolbar.add(reset);
+    	Toolbar.add(framesPerSecond);
     	Toolbar.add(Box.createVerticalGlue());
     	
     	this.add(frame, BorderLayout.SOUTH);
@@ -197,7 +217,7 @@ public class SimulatorView extends JFrame
      * @param animalClass The animal's Class object.
      * @param color The color to be used for the given class.
      */
-    public void setColor(Class animalClass, Color color)
+    public void setColor(Class<?> animalClass, Color color)
     {
         colors.put(animalClass, color);
     }
@@ -205,7 +225,7 @@ public class SimulatorView extends JFrame
     /**
      * @return The color to be used for a given class of animal.
      */
-    private Color getColor(Class animalClass)
+    private Color getColor(Class<? extends Object> animalClass)
     {
         Color col = colors.get(animalClass);
         if(col == null) {

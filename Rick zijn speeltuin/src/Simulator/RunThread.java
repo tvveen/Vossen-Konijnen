@@ -13,9 +13,21 @@ public class RunThread implements Runnable
 	/* Private int, waarin een bepaald aantal steps geplaatst kunnen worden. */
 	private int steps = 0;
 	
-	/* */
+	
+	/* Een scheduled instantie aanmaken, om een methode vertraagd uit te voeren. */
 	private ScheduledExecutorService timer =  Executors.newSingleThreadScheduledExecutor ();
 	
+	
+	/* Een private int. Hierin word het aantal milisecondes opgeslagen dat de thread elke run moet slapen. */
+	private int threadSleep	= 0;
+	
+	
+	
+	/* Methode om de threadSleep variable aan te passen. */
+	public void setThreadSleep (int miliseconds)
+	{
+		this.threadSleep = miliseconds;
+	}
 	
 	
 	/* Methode om the thread te starten. */
@@ -89,8 +101,22 @@ public class RunThread implements Runnable
 			/* Een loop maken, die net zo lang draait tot runThread op false word gezet. */
 			while (runThread)
 			{
-				/* Daadwerkelijk een stap vooruit */
-				Main.getSimulator().simulateOneStep ();
+				try
+				{
+					/* Daadwerkelijk een stap vooruit */
+					Main.getSimulator().simulateOneStep ();
+				
+					/* Kijken of de thread moet slapen. */
+					if (this.threadSleep != 0)
+					{
+						/* De thread laten slapen voor de ingestelde milisecondes. */
+						Thread.sleep (this.threadSleep);
+					}
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 		else
@@ -98,11 +124,25 @@ public class RunThread implements Runnable
 			/* Een loop maken, die net zo lang draait tot runThread false is, of het aantal steps 0 is. */
 			while (runThread && steps > 0)
 			{
-				/* Daadwerkelijk een stap vooruit */
-				Main.getSimulator().simulateOneStep ();
-				
-				/* Steps - 1. */
-				steps--;
+				try
+				{
+					/* Daadwerkelijk een stap vooruit */
+					Main.getSimulator().simulateOneStep ();
+					
+					/* Steps - 1. */
+					steps--;
+					
+					/* Kijken of de thread moet slapen. */
+					if (this.threadSleep != 0)
+					{
+						/* De thread laten slapen voor de ingestelde milisecondes. */
+						Thread.sleep (this.threadSleep);
+					}
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 			}
 			
 			/* De thread stoppen, zodat hij opnieuw kan worden gestart. */
