@@ -5,7 +5,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import Views.ViewController;
-import Display.SimulatorView;
 
 public class RunThread implements Runnable
 {

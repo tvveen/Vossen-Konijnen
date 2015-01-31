@@ -113,7 +113,7 @@ public class SimulatorView extends JFrame
     	
     	JMenuItem viewHistog = new JMenuItem ("Histogram");
     	JMenuItem viewCirkel = new JMenuItem ("Cirkeldiagram");
-    	JMenuItem viewHistor = new JMenuItem ("Historische weergave");
+    	JMenuItem viewHistor = new JMenuItem ("Lijndiagram");
     	//openMenuItem.addActionListener(this);
     	
 		viewHistog.addActionListener (new ActionListener ()
@@ -154,9 +154,11 @@ public class SimulatorView extends JFrame
 			{
 				JFrame frame = new JFrame();
 				
-				frame.setTitle ("Historische weergave");
+				frame.setTitle ("Lijndiagram");
 				
-				frame.setSize (500, 300);
+				frame.setSize (650, 425);
+				
+				frame.add (ViewController.lineChart);
 				
 				frame.setVisible (true);
 			}

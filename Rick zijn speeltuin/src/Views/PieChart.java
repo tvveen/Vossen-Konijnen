@@ -83,12 +83,20 @@ public class PieChart extends JPanel
 				total += getCount;
 			}
 			
-
+			
+			/* Kijken of het totaal wel boven de 0 ligt. Zo nee, return zodat er niks word gerekent. */
+			if (total == 0)
+			{
+				/* Return */
+				return;
+			}
+			
+			
 			/* De boven gemaakte hashmap doorloopen. */
 			for (Color color : stats.keySet())
 			{
 				/* Het aantal objecten van dit bepaald model * 360 (1 hele ronde), en dat gedeeldoor het totaal aantal. */
-				arcAngle = (stats.get (color) * 360/ total) ;
+				arcAngle = (stats.get (color) * 360 / total) ;
 				
 				/* De kleur setten die is meegegeven in de data. */
 				g.setColor (color);
