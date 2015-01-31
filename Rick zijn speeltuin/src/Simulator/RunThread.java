@@ -4,6 +4,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import Views.ViewController;
+import Display.SimulatorView;
+
 public class RunThread implements Runnable
 {
 	/* Private boolean om na te gaan of de thread moet runnen of niet. */
@@ -21,6 +24,13 @@ public class RunThread implements Runnable
 	/* Een private int. Hierin word het aantal milisecondes opgeslagen dat de thread elke run moet slapen. */
 	private int threadSleep	= 0;
 	
+	
+	/* De constructer aanmaken. */
+	public RunThread ()
+	{
+		/* De thread methode aanroepen van de static classe ViewController, zodat alle views zowiezo van data zijn voorzien. */
+		ViewController.thread ();
+	}
 	
 	
 	/* Methode om de threadSleep variable aan te passen. */
@@ -107,9 +117,6 @@ public class RunThread implements Runnable
 		{
 			try
 			{
-				/* Daadwerkelijk een stap vooruit */
-				Main.getSimulator().simulateOneStep ();
-			
 				/* Kijken of de thread moet slapen. */
 				if (this.threadSleep != 0)
 				{
@@ -122,6 +129,9 @@ public class RunThread implements Runnable
 				{
 					/* Laat de thread daadwerkelijk stoppen. */
 					this.runThread = false;
+					
+					/* Ervoor zorgen dat de loop per direct word afgesloten. */
+					break;
 				}
 				
 				
@@ -130,7 +140,13 @@ public class RunThread implements Runnable
 				{
 					/* Haal een step eraf. */
 					steps--;
-				}				
+				}
+				
+				/* Daadwerkelijk een stap vooruit */
+				Main.getSimulator().simulateOneStep ();
+				
+				
+				ViewController.thread ();
 			}
 			catch (InterruptedException e)
 			{

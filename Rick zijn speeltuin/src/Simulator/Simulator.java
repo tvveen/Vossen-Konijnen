@@ -64,12 +64,20 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
+        
         view.setColor(Rabbit.class, Color.ORANGE);
         view.setColor(Fox.class, Color.BLUE);
         
         // Setup a valid starting point.
         reset();
     }
+    
+    
+    public SimulatorView getView ()
+    {
+    	return this.view;
+    }
+    
     
     /**
      * Run the simulation from its current state for a reasonably long period,

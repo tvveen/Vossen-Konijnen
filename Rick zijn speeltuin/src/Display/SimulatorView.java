@@ -11,8 +11,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Other.Counter;
+import Other.DataWrapper;
 import Simulator.Main;
+import Views.ViewController;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -49,9 +53,10 @@ public class SimulatorView extends JFrame
     
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
+    
     // A statistics object computing and storing simulation information
     private FieldStats stats;
-
+    
     /**
      * Create a view of the given width and height.
      * @param height The simulation's height.
@@ -75,6 +80,9 @@ public class SimulatorView extends JFrame
             {
             	/* Zodra de jFrame word afgesloten, word eerst de thread gestopt. Indien dit niet gebeurd, zal het schermpje opnieuw worden geopent. */
             	Main.getThread().stopThread();
+            	
+            	/* Het programma forceren om te sluiten, als dit nog niet is gebeurd. */
+            	System.exit (1);
             }
         });
         
@@ -131,6 +139,8 @@ public class SimulatorView extends JFrame
 				frame.setTitle ("Cirkeldiagram");
 				
 				frame.setSize (500, 300);
+				
+				frame.add (ViewController.pieChart);
 				
 				frame.setVisible (true);
 			}
@@ -347,6 +357,29 @@ public class SimulatorView extends JFrame
         population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
         fieldView.repaint();
     }
+    
+    
+    
+    public HashMap<Class, DataWrapper> getCurrentData()
+    {
+		HashMap<Class, Counter> fieldData	= stats.getCounters();
+		HashMap<Class, DataWrapper> newData = new HashMap<Class, DataWrapper>();
+		
+		
+			for (Class c: fieldData.keySet ())
+			{
+				HashMap<Counter, Color> temp = new HashMap<Counter, Color>();
+				
+				temp.put (fieldData.get(c), colors.get(c));
+				
+				
+				newData.put (c, new DataWrapper (fieldData.get(c), colors.get(c)));
+			}
+		
+		return newData;
+    }
+    
+    
 
     /**
      * Determine whether the simulation should continue to run.
