@@ -8,7 +8,8 @@ import Simulator.Main;
 public class ViewController
 {
 	/* Alle Views worden hier gedeclareerd en geinitaliseerd. */
-	 public static PieChart pieChart = new PieChart (460, 200);
+	 public static PieChart pieChart	= new PieChart (460, 200);
+	 public static Histogram histoGram	= new Histogram (400, 500);
 	 
 	 
 	 /* De methoe thread, die de huidige data ophaalt, en alle views update. */
@@ -18,6 +19,7 @@ public class ViewController
 		HashMap<Class, DataWrapper> data = Main.getSimulator().getView().getCurrentData();
 		 
 		/* De PieChart updaten. */
-		pieChart.update(data);
+		pieChart.update (data);
+		histoGram.update (data);
 	 }
 }

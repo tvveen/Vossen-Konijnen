@@ -124,7 +124,9 @@ public class SimulatorView extends JFrame
 				
 				frame.setTitle ("Histogram");
 				
-				frame.setSize (500, 300);
+				frame.setSize (500, 600);
+				
+				frame.add (ViewController.histoGram);
 				
 				frame.setVisible (true);
 			}

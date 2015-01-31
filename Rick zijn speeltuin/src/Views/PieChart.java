@@ -37,6 +37,7 @@ public class PieChart extends JPanel
 	/* Methode om de gegevens van het veld op te slaan in dit object. */
 	public void update (HashMap<Class, DataWrapper> data)
 	{
+		/* De data opslaan. */
 		this.data = data;
 		
 		/* Nadat de data opgeslagen is, repaint de chart opnieuw zodat de nieuwe data direct zichtbaar is. */
