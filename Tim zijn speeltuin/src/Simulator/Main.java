@@ -1,5 +1,7 @@
 package Simulator;
 
+import javax.swing.*;
+
 public class Main
 {	
 	/* Statische variable voor een Simulator instantie. */
@@ -9,11 +11,45 @@ public class Main
 	public static RunThread thread;
 	
 	
-	/* Main methode om de applicatie te starten en een Simulator instantie aan te maken. */
-	public static void main (String[] args)
+	/* De main methode die word aangeroepen op het moment dat de applicatie word gestart. */
+	public static void main (final String[] args)
 	{
-		/* De Simulator variabele initialiseren. */
-		Main.simulator = new Simulator ();
+		/* Een nieuwe JFrame aanmaken. */
+		final JFrame parent = new JFrame();
+		
+		/* Default hoogte van het venster. */
+		int height	= 80;
+		
+		/* Default breedte van het venster. */
+		int width	= 120;
+		
+		
+		/* Controleren of er een cijfer in gevuld is of niet. */
+		try
+		{ 
+			/* Het ingevulde nummer proberen op te halen. */
+			height	= Integer.valueOf (JOptionPane.showInputDialog (parent, "Enter the heigth of the gird", null));
+		}
+		catch (NumberFormatException e)
+		{
+			/* Er is geen geldig nummer ingevuld, dus een default hoogte blijft zoals eerder ingesteld. */
+		}
+		
+		
+		/* Controleren of er een cijfer in gevuld is of niet. */
+		try
+		{ 
+			/* Het ingevulde nummer proberen op te halen. */
+			width	= Integer.valueOf (JOptionPane.showInputDialog (parent, "Enter the width of the grid", null));
+		}
+		catch (NumberFormatException e)
+		{
+			/* Er is geen geldig nummer ingevuld, dus een default breedte blijft zoals eerder ingesteld. */
+		}
+		
+		
+		/* Nieuwe simulator maken met de ingevulde (of default) gegevens. */
+		Main.simulator = new Simulator (height, width);
 		
 		/* De Thread variabele initialiseren. */
 		Main.thread = new RunThread ();
@@ -27,6 +63,7 @@ public class Main
 	}
 	
 	
+	/* Methode om de Thread instantie op te roepen. */
 	public static RunThread getThread ()
 	{
 		return thread;

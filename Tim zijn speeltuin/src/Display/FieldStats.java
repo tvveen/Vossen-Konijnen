@@ -31,6 +31,17 @@ public class FieldStats
         countsValid = true;
     }
 
+    
+    
+    
+    public HashMap<Class, Counter> getCounters ()
+    {
+    	return this.counters;
+    }
+    
+    
+    
+    
     /**
      * Get details of what is in the field.
      * @return A string describing what is in the field.
