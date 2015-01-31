@@ -4,8 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -67,7 +65,6 @@ public class LineChart extends JPanel
 		/* Variables setten. */
 		int total	= 0;
 		int posX	= 0;
-		int posY	= 0;
 		
 		
 		/* De lijn van links naar rechts tekenen. */
