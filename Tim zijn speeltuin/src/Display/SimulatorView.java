@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 import Other.Counter;
 import Other.DataWrapper;
 import Simulator.Main;
+import Views.Settings;
 import Views.ViewController;
 
 import java.util.HashMap;
@@ -86,7 +87,7 @@ public class SimulatorView extends JFrame
             }
         });
         
-        setLocation (100, 50);
+        setLocation (100, 60);
    		
         JPanel frame = new JPanel();
         
@@ -102,8 +103,26 @@ public class SimulatorView extends JFrame
     	JMenu menu1 = new JMenu("Menu 1");
     	menu.add(menu1);
     	
+    	JMenuItem settingsMenu = new JMenuItem("Settings");
+    	settingsMenu.addActionListener(new ActionListener()
+    	{
+    		public void actionPerformed(ActionEvent g)
+    		{
+    			JFrame frame = new JFrame();
+    			frame.setTitle("Settings");    			
+    			frame.setSize(500, 593);
+				frame.setLocation(1055, 60);
+    			frame.setLayout(null);
+    			
+    			Settings settings = new Settings();
+    			
+    			frame.add(settings.getPanel());
+    			    			
+    			frame.setVisible(true);
+    		}
+    	});
     	
-    	
+    	menu1.add(settingsMenu);    	
     	
     	
     	/*

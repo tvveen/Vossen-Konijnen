@@ -18,16 +18,16 @@ public class Fox extends Animal
     // Characteristics shared by all foxes (class variables).
     
     // The age at which a fox can start to breed.
-    private static final int BREEDING_AGE = 3;
+    private static int BREEDING_AGE = 3;
     // The age to which a fox can live.
-    private static final int MAX_AGE = 150;
+    private static int MAX_AGE = 150;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private static double BREEDING_PROBABILITY = 0.08;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 8;
+    private static int MAX_LITTER_SIZE = 8;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
-    private static final int RABBIT_FOOD_VALUE = 5;
+    private static int RABBIT_FOOD_VALUE = 5;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -36,6 +36,7 @@ public class Fox extends Animal
     private int age;
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
+        
 
     /**
      * Create a fox. A fox can be created as a new born (age zero
@@ -175,4 +176,32 @@ public class Fox extends Animal
     {
         return age >= BREEDING_AGE;
     }
+    
+    
+    
+    public static void setBreedingAge(int breedingAge)
+    {
+    	BREEDING_AGE = breedingAge;
+    }
+    
+    public static void setMaxAge(int maxAge)
+    {
+    	MAX_AGE = maxAge;
+    }
+    
+    public static void setBreedingProbability(double probability)
+    {
+    	BREEDING_PROBABILITY = probability;
+    }
+    
+    public static void setMaxLitterSize(int max)
+    {
+    	MAX_LITTER_SIZE = max;
+    }
+        
+    public static void setRabbitFoodValue(int food)
+    {
+    	RABBIT_FOOD_VALUE = food;
+    }
+    
 }

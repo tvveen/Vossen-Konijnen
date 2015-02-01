@@ -10,7 +10,7 @@ import Other.*;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public abstract class Animal
+public abstract class Animal implements Actor
 {
     // Whether the animal is alive or not.
     private boolean alive;

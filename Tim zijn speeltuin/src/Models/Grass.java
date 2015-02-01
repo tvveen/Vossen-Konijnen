@@ -17,15 +17,15 @@ public class Grass extends Animal
     // Characteristics shared by all Grass (class variables).
 
     // The age at which a Grass can start to breed.
-    private static final int BREEDING_AGE = 3;
+    private static int BREEDING_AGE = 3;
     // The age to which a Grass can live.
-    private static final int MAX_AGE = 12;
+    private static int MAX_AGE = 12;
     // The likelihood of a Grass breeding.
-    private static final double BREEDING_PROBABILITY = 0.15;
+    private static double BREEDING_PROBABILITY = 0.15;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 6;
+    private static int MAX_LITTER_SIZE = 6;
     // A shared random number generator to control breeding.
-    private static final Random rand = Randomizer.getRandom();
+    private static Random rand = Randomizer.getRandom();
     
     // Individual characteristics (instance fields).
     
@@ -123,5 +123,25 @@ public class Grass extends Animal
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public static void setBreedingAge(int breedingAge)
+    {
+    	BREEDING_AGE = breedingAge;
+    }
+    
+    public static void setMaxAge(int maxAge)
+    {
+    	MAX_AGE = maxAge;
+    }
+    
+    public static void setBreedingProbability(double probability)
+    {
+    	BREEDING_PROBABILITY = probability;
+    }
+    
+    public static void setMaxLitterSize(int max)
+    {
+    	MAX_LITTER_SIZE = max;
     }
 }
