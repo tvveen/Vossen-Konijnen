@@ -304,14 +304,14 @@ public class SimulatorView extends JFrame
     	framesPerSecond.setLabelTable (labelTable);
     	framesPerSecond.setPaintLabels (true);
     	
-    	JLabel foxText = new JLabel("Fox(es)");
+    	JLabel foxText = new JLabel("Fox");
     	foxText.setBounds (5, 200, 60, 25);
     	
     	JPanel foxBox = new JPanel();
     	foxBox.setBounds (70, 200, 80, 25);
     	foxBox.setBackground(Color.BLUE);
     	
-    	JLabel rabbitText = new JLabel("Rabbit(s)");
+    	JLabel rabbitText = new JLabel("Rabbit");
     	rabbitText.setBounds (5, 240, 60, 25);
     	
     	JPanel rabbitBox = new JPanel();
@@ -324,6 +324,20 @@ public class SimulatorView extends JFrame
     	JPanel grassBox = new JPanel();
     	grassBox.setBounds (70, 280, 80, 25);
     	grassBox.setBackground(Color.GREEN);
+    	
+    	JLabel hunterText = new JLabel("Hunter");
+    	hunterText.setBounds (5, 320, 60, 25);
+    	
+    	JPanel hunterBox = new JPanel();
+    	hunterBox.setBounds (70, 320, 80, 25);
+    	hunterBox.setBackground(Color.RED);
+    	
+    	JLabel wolfText = new JLabel("Wolf");
+    	wolfText.setBounds (5, 360, 60, 25);
+    	
+    	JPanel wolfBox = new JPanel();
+    	wolfBox.setBounds (70, 360, 80, 25);
+    	wolfBox.setBackground(Color.MAGENTA);
     	
     	Toolbar.add(onestep);
     	Toolbar.add(honderdstep);
@@ -339,6 +353,10 @@ public class SimulatorView extends JFrame
     	Toolbar.add(rabbitBox);
     	Toolbar.add(grassText);
     	Toolbar.add(grassBox);
+    	Toolbar.add(hunterText);
+    	Toolbar.add(hunterBox);
+    	Toolbar.add(wolfText);
+    	Toolbar.add(wolfBox);
     	Toolbar.add(Box.createVerticalGlue());
     	
     	this.add(frame, BorderLayout.SOUTH);
