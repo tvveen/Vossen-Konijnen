@@ -20,17 +20,17 @@ public class Wolf extends Animal
     // The age at which a wolf can start to breed.
     private static int BREEDING_AGE = 6;
     // The age to which a wolf can live.
-    private static int MAX_AGE = 200;
+    private static int MAX_AGE = 150;
     // The likelihood of a wolf breeding.
-    private static double BREEDING_PROBABILITY = 0.02;
+    private static double BREEDING_PROBABILITY = 0.04;
     // The maximum number of births.
     private static int MAX_LITTER_SIZE = 4;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static int RABBIT_FOOD_VALUE = 5;
+    private static int RABBIT_FOOD_VALUE = 3;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static int FOX_FOOD_VALUE = 14;
+    private static int FOX_FOOD_VALUE = 15;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     

@@ -11,8 +11,8 @@ public class Hunter implements Actor
 	/* Toegestaande aantal objecten voordat de hunter er iets aan mag doen */
 	private static final int MAX_GRASS_ENTITIES = 1500;
 	private static final int MAX_RABBIT_ENTITIES = 1000;
-	private static final int MAX_FOX_ENTITIES = 1000;
-	private static final int MAX_WOLF_ENTITIES = 300;
+	private static final int MAX_FOX_ENTITIES = 2500;
+	private static final int MAX_WOLF_ENTITIES = 50;
 	
 	/* Het veld waar de hunter zich op bevind. */
 	private Field field;

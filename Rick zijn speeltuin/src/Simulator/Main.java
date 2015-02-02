@@ -16,10 +16,10 @@ public class Main
 	public static RunThread thread;
 	
 	/* Statische variable voor standaard simulator hoogte. */
-	public static int simulatorHeight = 80;
+	public static int simulatorHeight = 100;
 	
 	/* Statische variable voor standaard simulator breedte. */
-	public static int simulatorWidth = 120;
+	public static int simulatorWidth = 140;
 	
 	/* Statische variable voor de splashScreen object. */
 	private static JFrame splashScreen;

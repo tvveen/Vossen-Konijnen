@@ -83,13 +83,13 @@ public class LineChart extends JPanel
 			
 			
 			/* Elke class loopen. */
-			for (Class c: this.data.keySet())
+			for (Class c: this.data.keySet ())
 			{
 				/* Kijken of de geselecteerde class al in de chartData staat. */
-				if (!this.chartData.containsKey(c))
+				if (!this.chartData.containsKey (c))
 				{
 					/* Dit bleek niet het geval, dus word die nu aangemaakt. */
-					this.chartData.put(c, new LineChartData (this.maxDots));
+					this.chartData.put (c, new LineChartData (this.maxDots));
 				}
 				
 				/* De nieuwe X positie bepalen van de eerst volgende dot. */
@@ -106,7 +106,7 @@ public class LineChart extends JPanel
 			
 			
 			/* Nogmaals een loop maken. */
-			for (Class c: this.data.keySet())
+			for (Class c: this.data.keySet ())
 			{
 				/* Tijdelijke variables setten. */
 				int previousDotY	= 0;
@@ -115,10 +115,10 @@ public class LineChart extends JPanel
 				int dotCount		= 0;
 				
 				/* Kleur van de lijn setten naar de kleur die bij het model hoort. */
-				g2.setColor (this.data.get(c).getColor()); 
+				g2.setColor (this.data.get(c).getColor ()); 
 				
-				/* Lijn dikte zetten naar 2. */
-				g2.setStroke(new BasicStroke(2));
+				/* Lijn dikte setten naar 2. */
+				g2.setStroke (new BasicStroke (2));
 				
 					/* Een loop die alle dots langs gaat. */
 					for (Integer dotX: this.chartData.get(c).getDots())
