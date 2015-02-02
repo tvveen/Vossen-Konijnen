@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
+
 import Models.*;
 import Display.*;
 import Other.*;
@@ -31,6 +32,8 @@ public class Simulator
     private static final double GRASS_CREATION_PROBABILITY = 0.08;  
     
     private static final double HUNTER_CREATION_PROBABILITY = 0.01;  
+    
+    private static final double WOLF_CREATION_PROBABILITY = 0.01;
 
     // List of animals in the field.
     //private List<Animal> animals;
@@ -189,6 +192,11 @@ public class Simulator
                     Location location = new Location(row, col);
                     Hunter hunter = new Hunter(field, location);
                     actors.add(hunter);
+                }
+                else if(rand.nextDouble() <= WOLF_CREATION_PROBABILITY) {
+                	Location location = new Location(row, col);
+                	Wolf wolf = new Wolf(true, field, location);
+                	actors.add(wolf);
                 }
                 // else leave the location empty.
             }
