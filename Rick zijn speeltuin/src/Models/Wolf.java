@@ -212,9 +212,9 @@ public class Wolf extends Animal
     	MAX_LITTER_SIZE = max;
     }
         
-    public static void setRabbitFoodValue(int food)
+    public static void setFoxFoodValue(int food)
     {
-    	RABBIT_FOOD_VALUE = food;
+    	FOX_FOOD_VALUE = food;
     }
     
 }
