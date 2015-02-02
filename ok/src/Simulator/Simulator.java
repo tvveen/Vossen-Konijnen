@@ -32,7 +32,7 @@ public class Simulator
     
     private static final double HUNTER_CREATION_PROBABILITY = 0.08;  
     
-    private static final double WOLF_CREATION_PROBABILITY = 0.005;
+    private static final double WOLF_CREATION_PROBABILITY = 0.01;
 
     // List of animals in the field.
     //private List<Animal> animals;

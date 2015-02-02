@@ -18,11 +18,11 @@ public class Wolf extends Animal
     // Characteristics shared by all wolves (class variables).
     
     // The age at which a wolf can start to breed.
-    private static int BREEDING_AGE = 10;
+    private static int BREEDING_AGE = 6;
     // The age to which a wolf can live.
-    private static int MAX_AGE = 150;
+    private static int MAX_AGE = 200;
     // The likelihood of a wolf breeding.
-    private static double BREEDING_PROBABILITY = 0.03;
+    private static double BREEDING_PROBABILITY = 0.02;
     // The maximum number of births.
     private static int MAX_LITTER_SIZE = 4;
     // The food value of a single rabbit. In effect, this is the
@@ -30,7 +30,7 @@ public class Wolf extends Animal
     private static int RABBIT_FOOD_VALUE = 5;
     // The food value of a single fox. In effect, this is the
     // number of steps a wolf can go before it has to eat again.
-    private static int FOX_FOOD_VALUE = 10;
+    private static int FOX_FOOD_VALUE = 14;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -54,11 +54,13 @@ public class Wolf extends Animal
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            foodLevel = rand.nextInt(RABBIT_FOOD_VALUE) + rand.nextInt(FOX_FOOD_VALUE);
+            //foodLevel = rand.nextInt(RABBIT_FOOD_VALUE) + rand.nextInt(FOX_FOOD_VALUE);
+            foodLevel = rand.nextInt(FOX_FOOD_VALUE);
         }
         else {
             age = 0;
-            foodLevel = RABBIT_FOOD_VALUE + FOX_FOOD_VALUE;
+            //foodLevel = RABBIT_FOOD_VALUE + FOX_FOOD_VALUE;
+            foodLevel = FOX_FOOD_VALUE;
         }
     }
     

@@ -19,11 +19,11 @@ public class Hunter implements Actor {
   // Determine if the hunter is alive
   private boolean alive;
   
-  private static int minRabbitsNeeded	= 1000;
+  private static final int MIN_RABBITS_NEEDED = 800;
   
-  private static int minFoxesNeeded = 500;
+  private static final int MIN_FOXES_NEEDED = 400;
   
-  private static int minWolvesNeeded = 300;
+  private static final int MIN_WOLVES_NEEDED = 100;
   
   // Characteristics shared by all hunters (class variables).
 
@@ -127,7 +127,7 @@ public class Hunter implements Actor {
     	  		
     	  			if (rabbit.isAlive ()) 
     	  			{
-    	  				if (newData.get("Rabbit") > minRabbitsNeeded)
+    	  				if (newData.get("Rabbit") > MIN_RABBITS_NEEDED)
     	  				{
     	  					rabbit.setDead ();
     	  				}
@@ -142,7 +142,7 @@ public class Hunter implements Actor {
     	  		
     	  			if (fox.isAlive ()) 
     	  			{
-    	  				if (newData.get("Fox") > minFoxesNeeded)
+    	  				if (newData.get("Fox") > MIN_FOXES_NEEDED)
     	  				{
     	  					fox.setDead ();
     	  				}
@@ -157,7 +157,7 @@ public class Hunter implements Actor {
     	  		
     	  			if (wolf.isAlive ()) 
     	  			{
-    	  				if (newData.get("Wolf") > minWolvesNeeded)
+    	  				if (newData.get("Wolf") > MIN_WOLVES_NEEDED)
     	  				{
     	  					wolf.setDead ();
     	  				}
