@@ -18,8 +18,8 @@ public class GrassPanel {
 	// Hier staan de standaard waarden van het grass in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 3;
 	private static int DEFAULT_MAX_AGE = 12;
-	private static double DEFAULT_BREEDING_PROBABILITY = 0.15;
-	private static int DEFAULT_MAX_LITTER_SIZE = 6;
+	private static double DEFAULT_BREEDING_PROBABILITY = 0.25;
+	private static int DEFAULT_MAX_LITTER_SIZE = 4;
 	
 	// Declareer een nieuw JPanel
 	private JPanel grassPanel;

@@ -12,11 +12,11 @@ import Simulator.Main;
 public class FoxPanel {
 
 	// Hier staan de standaard waarden van de fox in gesteld; gelijk aan die van de klasse
-	private static int DEFAULT_BREEDING_AGE = 3;
-	private static int DEFAULT_MAX_AGE = 150;
+	private static int DEFAULT_BREEDING_AGE = 2;
+	private static int DEFAULT_MAX_AGE = 200;
 	private static double DEFAULT_BREEDING_PROBABILITY = 0.08;
-	private static int DEFAULT_MAX_LITTER_SIZE = 8;
-	private static int DEFAULT_RABBIT_FOOD_VALUE = 5;
+	private static int DEFAULT_MAX_LITTER_SIZE = 12;
+	private static int DEFAULT_RABBIT_FOOD_VALUE = 7;
 	
 	// Declareer een nieuw JPanel
 	private JPanel foxPanel;

@@ -13,10 +13,10 @@ public class WolfPanel {
 
 	// Hier staan de standaard waarden van de wolf in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 6;
-	private static int DEFAULT_MAX_AGE = 200;
-	private static double DEFAULT_BREEDING_PROBABILITY = 0.02;
+	private static int DEFAULT_MAX_AGE = 150;
+	private static double DEFAULT_BREEDING_PROBABILITY = 0.04;
 	private static int DEFAULT_MAX_LITTER_SIZE = 4;
-	private static int DEFAULT_FOX_FOOD_VALUE = 5;
+	private static int DEFAULT_FOX_FOOD_VALUE = 15;
 	
 	// Declareer een nieuw JPanel
 	private JPanel wolfPanel;
