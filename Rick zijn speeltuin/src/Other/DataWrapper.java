@@ -24,7 +24,7 @@ public class DataWrapper
     }
     
     
-    /* Getter moethode voor color. */
+    /* Getter methode voor color. */
     public Color getColor ()
     {
     	return this.color;
