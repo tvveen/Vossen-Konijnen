@@ -14,6 +14,7 @@ import javax.swing.event.ChangeListener;
 import Other.Counter;
 import Other.DataWrapper;
 import Simulator.Main;
+import Views.Settings;
 import Views.ViewController;
 
 import java.util.HashMap;
@@ -86,7 +87,7 @@ public class SimulatorView extends JFrame
             }
         });
         
-        setLocation (100, 50);
+        setLocation (100, 60);
    		
         JPanel frame = new JPanel();
         
@@ -102,8 +103,32 @@ public class SimulatorView extends JFrame
     	JMenu menu1 = new JMenu("Menu 1");
     	menu.add(menu1);
     	
+    	JMenuItem settingsMenu = new JMenuItem("Settings");
+    	settingsMenu.addActionListener(new ActionListener()
+    	{
+    		public void actionPerformed(ActionEvent g)
+    		{
+    			JFrame frame = new JFrame();
+    			frame.setTitle("Settings");    			
+    			frame.setSize(500, 593);
+				frame.setLocation(1055, 60);
+    			frame.setLayout(null);
+    			
+    			Settings settings = new Settings();
+    			
+    			frame.add(settings.getPanel());
+    			    			
+    			frame.setVisible(true);
+    			
+    			
+    			
+    			
+
+    			
+    		}
+    	});
     	
-    	
+    	menu1.add(settingsMenu);    	
     	
     	
     	/*
@@ -279,6 +304,26 @@ public class SimulatorView extends JFrame
     	framesPerSecond.setLabelTable (labelTable);
     	framesPerSecond.setPaintLabels (true);
     	
+    	JLabel foxText = new JLabel("Fox(es)");
+    	foxText.setBounds (5, 200, 60, 25);
+    	
+    	JPanel foxBox = new JPanel();
+    	foxBox.setBounds (70, 200, 80, 25);
+    	foxBox.setBackground(Color.BLUE);
+    	
+    	JLabel rabbitText = new JLabel("Rabbit(s)");
+    	rabbitText.setBounds (5, 240, 60, 25);
+    	
+    	JPanel rabbitBox = new JPanel();
+    	rabbitBox.setBounds (70, 240, 80, 25);
+    	rabbitBox.setBackground(Color.ORANGE);
+    	
+    	JLabel grassText = new JLabel("Grass");
+    	grassText.setBounds (5, 280, 60, 25);
+    	
+    	JPanel grassBox = new JPanel();
+    	grassBox.setBounds (70, 280, 80, 25);
+    	grassBox.setBackground(Color.GREEN);
     	
     	Toolbar.add(onestep);
     	Toolbar.add(honderdstep);
@@ -288,6 +333,12 @@ public class SimulatorView extends JFrame
     	Toolbar.add(getText);
     	Toolbar.add(reset);
     	Toolbar.add(framesPerSecond);
+    	Toolbar.add(foxText);
+    	Toolbar.add(foxBox);
+    	Toolbar.add(rabbitText);
+    	Toolbar.add(rabbitBox);
+    	Toolbar.add(grassText);
+    	Toolbar.add(grassBox);
     	Toolbar.add(Box.createVerticalGlue());
     	
     	this.add(frame, BorderLayout.SOUTH);

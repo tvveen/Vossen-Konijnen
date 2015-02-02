@@ -26,10 +26,18 @@ public class Simulator
     // The probability that a fox will be created in any given grid position.
     private static final double FOX_CREATION_PROBABILITY = 0.02;
     // The probability that a rabbit will be created in any given grid position.
-    private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
+    private static final double RABBIT_CREATION_PROBABILITY = 0.04; 
+
+    private static final double GRASS_CREATION_PROBABILITY = 0.08;  
+    
+    private static final double HUNTER_CREATION_PROBABILITY = 0.08;  
 
     // List of animals in the field.
-    private List<Animal> animals;
+    //private List<Animal> animals;
+    
+    
+    private List<Actor> actors;
+    
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
@@ -59,7 +67,9 @@ public class Simulator
             width = DEFAULT_WIDTH;
         }
         
-        animals = new ArrayList<Animal>();
+        //animals = new ArrayList<Animal>();
+        actors = new ArrayList<Actor>();
+        
         field = new Field(depth, width);
 
         // Create a view of the state of each location in the field.
@@ -67,6 +77,8 @@ public class Simulator
         
         view.setColor(Rabbit.class, Color.ORANGE);
         view.setColor(Fox.class, Color.BLUE);
+        view.setColor(Grass.class, Color.GREEN);
+        view.setColor(Hunter.class, Color.BLACK);
         
         // Setup a valid starting point.
         reset();
@@ -110,10 +122,13 @@ public class Simulator
         step++;
 
         // Provide space for newborn animals.
-        List<Animal> newAnimals = new ArrayList<Animal>();        
+        //List<Animal> newAnimals = new ArrayList<Animal>();    
+        List<Actor> newAnimals = new ArrayList<Actor>();
         // Let all rabbits act.
-        for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Animal animal = it.next();
+        
+        for(Iterator<Actor> it = actors.iterator(); it.hasNext(); ) {
+        //for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
+            Actor animal = it.next();
             animal.act(newAnimals);
             if(! animal.isAlive()) {
                 it.remove();
@@ -121,8 +136,9 @@ public class Simulator
         }
                
         // Add the newly born foxes and rabbits to the main lists.
-        animals.addAll(newAnimals);
-
+        //animals.addAll(newAnimals);
+        actors.addAll (newAnimals);
+        
         view.showStatus(step, field);
     }
         
@@ -132,7 +148,8 @@ public class Simulator
     public void reset()
     {
         step = 0;
-        animals.clear();
+        actors.clear();
+        //animals.clear();
         populate();
         
         // Show the starting state in the view.
@@ -151,12 +168,22 @@ public class Simulator
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Fox fox = new Fox(true, field, location);
-                    animals.add(fox);
+                    actors.add(fox);
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Rabbit rabbit = new Rabbit(true, field, location);
-                    animals.add(rabbit);
+                    actors.add(rabbit);
+                }
+                else if(rand.nextDouble() <= GRASS_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Grass grass = new Grass(true, field, location);
+                    actors.add(grass);
+                }
+                else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Hunter hunter = new Hunter(field, location);
+                    actors.add(hunter);
                 }
                 // else leave the location empty.
             }
