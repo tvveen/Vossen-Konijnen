@@ -1,14 +1,10 @@
 package Models;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import Display.Field;
-import Other.DataWrapper;
 import Other.Location;
-import Simulator.Main;
-
 public class Hunter implements Actor {
 //  // Whether the hunter is alive or not.
 //  private boolean alive = true;
@@ -18,8 +14,6 @@ public class Hunter implements Actor {
   private Location location;
   // Determine if the hunter is alive
   private boolean alive;
-  
-  private static int minRabitsNeeded	= 1000;
   
   // Characteristics shared by all hunters (class variables).
 
@@ -56,6 +50,7 @@ public class Hunter implements Actor {
   
   public void act(List<Actor> newHunters)
   {
+	  
   	// Move towards a source of food if found.
       Location newLocation = findAnimal();
       if(newLocation == null) { 
@@ -78,59 +73,63 @@ public class Hunter implements Actor {
    * Only the first live animal is shoot.
    * @return Where an animal is found, or null if it wasn't.
    */
-  @SuppressWarnings("rawtypes")
   private Location findAnimal()
   {
-      Field field				= getField();
-      List<Location> adjacent	= field.adjacentLocations(getLocation());
-      Iterator<Location> it		= adjacent.iterator();
-      
-      HashMap<Class, DataWrapper> data = Main.getSimulator().getView().getCurrentData();
-      
-      HashMap<String, Integer> newData = new HashMap<String, Integer>();
-      
-      	for (Class c: data.keySet ())
-      	{
-      		newData.put(c.getSimpleName(), data.get(c).getCounter().getCount());
-      	}
-
-      
-      /*	
-		
-			for (Class c: fieldData.keySet ())
-			{
-				HashMap<Counter, Color> temp = new HashMap<Counter, Color>();
-				
-				temp.put (fieldData.get(c), colors.get(c));
-				
-				
-				newData.put (c, new DataWrapper (fieldData.get(c), colors.get(c)));
-			}
-			
-       */
-      
-      
+     Field field				= getField();
+     List<Location> adjacent	= field.adjacentLocations(getLocation());
+     Iterator<Location> it		= adjacent.iterator();
+      	  
       while (it.hasNext ())
       {
-    	 // System.out.println("YO: " + newData.get("Rabbit"));
+    	 
     	  Location where	= it.next();
-    	  Object animal		= field.getObjectAt(where);
+    	  Object actor		= field.getObjectAt(where);
     	  
-    	  	if (animal instanceof Rabbit)
-    	  	{
-    	  		System.out.println ("Rabbit!! :D");
-    	  		Rabbit rabbit = (Rabbit) animal;
-    	  		
-    	  			if (rabbit.isAlive ()) 
-    	  			{
-    	  				if (newData.get("Rabbit") > minRabitsNeeded)
-    	  				{
-    	  					rabbit.setDead ();
-    	  				}
-    	  				
-    	  				return where;
-    	  			}
-    	  	}
+  	  	if (actor instanceof Rabbit)
+  	  	{
+  	  		Rabbit rabbit = (Rabbit) actor;
+  	  		
+  	  			if (rabbit.isAlive ()) 
+  	  			{
+  	  				if (Display.FieldStats.rabbitCount >= 1000)
+  	  				{
+  	  					//System.out.println ("Rape the fucking rabbit!!");
+  	  					rabbit.setDead ();
+  	  				}
+  	  				
+  	  				return where;
+  	  			}
+  	  	}else  
+	  	if (actor instanceof Fox)
+	  	{
+	  		Fox fox = (Fox) actor;
+	  		
+	  			if (fox.isAlive ()) 
+	  			{
+	  				if (Display.FieldStats.foxCount >= 1000)
+	  				{
+	  					//System.out.println ("Slaughter a mother fucking fox!");
+	  					fox.setDead ();
+	  				}
+	  				return where;
+	  			}
+	  	} else 	  
+	  	if (actor instanceof Grass)
+	  	{
+	  		Grass grass = (Grass) actor;
+	  		
+	  			if (grass.isAlive ()) 
+	  			{
+	  				if (Display.FieldStats.grassCount >= 1000)
+	  				{
+	  					//System.out.println ("Eat the facking grass!!!");
+	  					grass.setDead ();
+	  				}
+	  				
+	  				return where;
+	  			}
+	  	}
+    	  	
       }
       
       

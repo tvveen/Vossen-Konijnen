@@ -1,15 +1,10 @@
 package Views;
 
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.*;
 
 import javax.swing.*;
 
-import Models.Fox;
-import Simulator.Main;
 import Views.FoxPanel;
 
 public class Settings {

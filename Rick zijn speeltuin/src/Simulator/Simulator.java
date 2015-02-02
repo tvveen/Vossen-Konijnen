@@ -30,7 +30,7 @@ public class Simulator
 
     private static final double GRASS_CREATION_PROBABILITY = 0.08;  
     
-    private static final double HUNTER_CREATION_PROBABILITY = 0.08;  
+    private static final double HUNTER_CREATION_PROBABILITY = 0.01;  
 
     // List of animals in the field.
     //private List<Animal> animals;
@@ -78,7 +78,7 @@ public class Simulator
         view.setColor(Rabbit.class, Color.ORANGE);
         view.setColor(Fox.class, Color.BLUE);
         view.setColor(Grass.class, Color.GREEN);
-        view.setColor(Hunter.class, Color.BLACK);
+        view.setColor(Hunter.class, Color.RED);
         
         // Setup a valid starting point.
         reset();
@@ -123,21 +123,26 @@ public class Simulator
 
         // Provide space for newborn animals.
         //List<Animal> newAnimals = new ArrayList<Animal>();    
-        List<Actor> newAnimals = new ArrayList<Actor>();
+        List<Actor> newActors = new ArrayList<Actor>();
         // Let all rabbits act.
         
         for(Iterator<Actor> it = actors.iterator(); it.hasNext(); ) {
         //for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
-            Actor animal = it.next();
-            animal.act(newAnimals);
-            if(! animal.isAlive()) {
-                it.remove();
+            Actor actor = it.next();
+            actor.act(newActors);
+            
+            if (actor instanceof Animal)
+            {
+            	Animal animal = (Animal) actor;
+            	if(! animal.isAlive()) {
+            		it.remove();
+            	}
             }
         }
                
         // Add the newly born foxes and rabbits to the main lists.
         //animals.addAll(newAnimals);
-        actors.addAll (newAnimals);
+        actors.addAll (newActors);
         
         view.showStatus(step, field);
     }
