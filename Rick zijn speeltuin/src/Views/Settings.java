@@ -10,25 +10,29 @@ import Views.FoxPanel;
 public class Settings {
 
 	
-	
+	// Declareer het hoofd JPanel
 	private JPanel panel;
-	
+	// Lijst van termen in het dropdown menu
 	private String[] list = {"Wolf", "Fox", "Rabbit", "Grass"};
 	
 	public Settings()
 	{
+		// Declareer JPanels voor alle menu koppen
 		WolfPanel wolfpanel = new WolfPanel();
 		FoxPanel foxpanel = new FoxPanel();
 		RabbitPanel rabbitpanel = new RabbitPanel();
 		GrassPanel grasspanel = new GrassPanel();
 		
+		// Standaard waarden voor het hoofd JPanel
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 500, 593);
 		
+		// Constructueer het dropdown menu
 		JComboBox<String> dropList = new JComboBox<String>(list);
 		dropList.setBounds(1, 1, 500, 40);
 		
+		// Link en voeg de apparte JPanels aan de menu koppen
 		final JPanel wolfPanel = wolfpanel.getWolfPanel();
 		final JPanel foxPanel = foxpanel.getFoxPanel();
 		final JPanel rabbitPanel = rabbitpanel.getRabbitPanel();
@@ -39,7 +43,7 @@ public class Settings {
 		panel.add(rabbitPanel);
 		panel.add(grassPanel);	
 		
-		
+		// Defineer wat elke menu kop moet doen als er één is geselecteerd
 		dropList.addItemListener(new ItemListener()
 		{
 			@SuppressWarnings("unchecked")
@@ -84,6 +88,7 @@ public class Settings {
 		
 	}
 	
+	// Methode om het JPanel weer te geven
 	public JPanel getPanel()
 	{
 		return panel;
