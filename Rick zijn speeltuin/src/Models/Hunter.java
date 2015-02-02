@@ -8,6 +8,12 @@ import Other.Location;
 
 public class Hunter implements Actor
 {
+	/* Toegestaande aantal objecten voordat de hunter er iets aan mag doen */
+	private static final int MAX_GRASS_ENTITIES = 1500;
+	private static final int MAX_RABBIT_ENTITIES = 1000;
+	private static final int MAX_FOX_ENTITIES = 1000;
+	private static final int MAX_WOLF_ENTITIES = 300;
+	
 	/* Het veld waar de hunter zich op bevind. */
 	private Field field;
 	
@@ -97,7 +103,7 @@ public class Hunter implements Actor
 	  	  			if (rabbit.isAlive ()) 
 	  	  			{
 	  	  				/* Kijken of het toegestaan is om te jagen op rabbits. */
-	  	  				if (Display.FieldStats.rabbitCount >= 1000)
+	  	  				if (Display.FieldStats.rabbitCount >= MAX_RABBIT_ENTITIES)
 	  	  				{
 	  	  					/* Rabit doden. */
 	  	  					rabbit.setDead ();
@@ -117,7 +123,7 @@ public class Hunter implements Actor
 		  			if (fox.isAlive ()) 
 		  			{
 		  				/* Kijken of het toegestaan is om te jagen op foxxes. */
-		  				if (Display.FieldStats.foxCount >= 1000)
+		  				if (Display.FieldStats.foxCount >= MAX_FOX_ENTITIES)
 		  				{
 		  					/* Fox doden. */
 		  					fox.setDead ();
@@ -137,13 +143,33 @@ public class Hunter implements Actor
 		  			if (grass.isAlive ()) 
 		  			{
 		  				/* Kijken of het toegestaan is om gras kapot te trappen. */
-		  				if (Display.FieldStats.grassCount >= 1000)
+		  				if (Display.FieldStats.grassCount >= MAX_GRASS_ENTITIES)
 		  				{
 		  					/* Gras kapot maken. */
 		  					grass.setDead ();
 		  				}
 	  					
 	  					/* Naar de plek gaan waar het gras lag. */
+	  					return where;
+		  			}
+		  	}   
+    	  	/* Kijken of het object een Wolf is. */
+		  	else if (actor instanceof Wolf)
+		  	{
+		  		/* Dit bleek het geval te zijn, dus maak van de actor object, een wolf object. */
+		  		Wolf wolf = (Wolf) actor;
+		  		
+		  			/* Kijken of de wolf leeft. */
+		  			if (wolf.isAlive ()) 
+		  			{
+		  				/* Kijken of het toegestaan is om te jagen op wolves. */
+		  				if (Display.FieldStats.wolfCount >= MAX_WOLF_ENTITIES)
+		  				{
+		  					/* Wolf doden. */
+		  					wolf.setDead ();
+		  				}
+	  					
+	  					/* Naar de plek gaan waar de wolf stond. */
 	  					return where;
 		  			}
 		  	}
