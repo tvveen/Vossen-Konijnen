@@ -5,23 +5,21 @@ import java.util.List;
 
 import Display.Field;
 import Other.Location;
-public class Hunter implements Actor {
-//  // Whether the hunter is alive or not.
-//  private boolean alive = true;
-  // The hunter's field.
-  private Field field;
-  // The hunter's position in the field.
-  private Location location;
-  // Determine if the hunter is alive
-  private boolean alive;
-  
-  // Characteristics shared by all hunters (class variables).
 
-  // A shared random number generator to control breeding.
-//  private static final Random rand = Randomizer.getRandom();
+public class Hunter implements Actor
+{
+	/* Het veld waar de hunter zich op bevind. */
+	private Field field;
+	
+	/* De hunter zijn locatie in het veld. */
+	private Location location;
+	
+	/* Of een hunter leeft of niet. */
+	private boolean alive;
+  
   
   /**
-   * Create a hunter. 
+   * Create a new hunter object. 
    * @param field The field currently occupied.
    * @param location The location within the field.
    */
@@ -40,31 +38,36 @@ public class Hunter implements Actor {
   	return alive;
   }
   
-  /**
-   * This is what the bear does most of the time: it hunts for
-   * rabbits. In the process, it might breed, die of hunger,
-   * or die of old age.
-   * @param field The field currently occupied.
-   * @param newbears A list to return newly born bears.
-   */
   
+  /**
+   * Dit simuleert de hunter zijn 'leven'. Hij zoekt naar eten, en vertrapt gras onderweg.
+   * 
+   * @param field The field currently occupied.
+   * @param newbears A list to return newly born hunters.
+   */
   public void act(List<Actor> newHunters)
   {
-	  
-  	// Move towards a source of food if found.
+	  /* Kijken of er een dier of gras om hem heen is. */
       Location newLocation = findAnimal();
-      if(newLocation == null) { 
-          // No food found - try to move to a free location.
-          newLocation = getField().freeAdjacentLocation(getLocation());
+      
+      /* Dit was niet het geval. */
+      if (newLocation == null)
+      { 
+          /* Dus naar een nieuwe, lege, vak gaan. */
+          newLocation = getField().freeAdjacentLocation (getLocation ());
       }
-      // See if it was possible to move.
-      if(newLocation != null) {
+      
+      /* Controleren of het mogelijk is om te lopen. */
+      if (newLocation != null)
+      {
+    	  /* De hunter heeft plek om heen te gaan. */
           setLocation(newLocation);
       }
-      else{
-          	// Overcrowding.
-          	setDead();
-      	}
+      else
+      {
+    	  /* Er was geen plek meer voor de hunter. */
+    	  setDead ();
+      }
   }
 
 
@@ -81,58 +84,70 @@ public class Hunter implements Actor {
       	  
       while (it.hasNext ())
       {
-    	 
     	  Location where	= it.next();
     	  Object actor		= field.getObjectAt(where);
     	  
-  	  	if (actor instanceof Rabbit)
-  	  	{
-  	  		Rabbit rabbit = (Rabbit) actor;
+    	  	/* Kijken of het object een Rabbit is. */
+    	  	if (actor instanceof Rabbit)
+    	  	{
+    	  		/* Dit bleek het geval te zijn, dus maak van de actor object, een rabbit object. */
+    	  		Rabbit rabbit = (Rabbit) actor;
   	  		
-  	  			if (rabbit.isAlive ()) 
-  	  			{
-  	  				if (Display.FieldStats.rabbitCount >= 1000)
-  	  				{
-  	  					//System.out.println ("Rape the fucking rabbit!!");
-  	  					rabbit.setDead ();
-  	  				}
-  	  				
-  	  				return where;
-  	  			}
-  	  	}else  
-	  	if (actor instanceof Fox)
-	  	{
-	  		Fox fox = (Fox) actor;
-	  		
-	  			if (fox.isAlive ()) 
-	  			{
-	  				if (Display.FieldStats.foxCount >= 1000)
-	  				{
-	  					//System.out.println ("Slaughter a mother fucking fox!");
-	  					fox.setDead ();
-	  				}
-	  				return where;
-	  			}
-	  	} else 	  
-	  	if (actor instanceof Grass)
-	  	{
-	  		Grass grass = (Grass) actor;
-	  		
-	  			if (grass.isAlive ()) 
-	  			{
-	  				if (Display.FieldStats.grassCount >= 1000)
-	  				{
-	  					//System.out.println ("Eat the facking grass!!!");
-	  					grass.setDead ();
-	  				}
-	  				
-	  				return where;
-	  			}
-	  	}
-    	  	
+    	  			/* Kijken of de rabit leeft. */
+	  	  			if (rabbit.isAlive ()) 
+	  	  			{
+	  	  				/* Kijken of het toegestaan is om te jagen op rabbits. */
+	  	  				if (Display.FieldStats.rabbitCount >= 1000)
+	  	  				{
+	  	  					/* Rabit doden. */
+	  	  					rabbit.setDead ();
+	  	  				}
+	  	  				
+  	  					/* Naar de plek gaan waar de rabbit stond. */
+	  	  				return where;
+	  	  			}
+    	  	}
+    	  	/* Kijken of het object een Fox is. */
+    	  	else if (actor instanceof Fox)
+		  	{
+    	  		/* Dit bleek het geval te zijn, dus maak van de actor object, een fox object. */
+		  		Fox fox = (Fox) actor;
+		  		
+		  			/* Kijken of de fox leeft. */
+		  			if (fox.isAlive ()) 
+		  			{
+		  				/* Kijken of het toegestaan is om te jagen op foxxes. */
+		  				if (Display.FieldStats.foxCount >= 1000)
+		  				{
+		  					/* Fox doden. */
+		  					fox.setDead ();
+		  				}		  	
+		  				
+	  					/* Naar de plek gaan waar de fox stond. */
+	  					return where;
+		  			}
+		  	}   
+    	  	/* Kijken of het object een Grass is. */
+		  	else if (actor instanceof Grass)
+		  	{
+		  		/* Dit bleek het geval te zijn, dus maak van de actor object, een grass object. */
+		  		Grass grass = (Grass) actor;
+		  		
+		  			/* Kijken of het grass leeft. */
+		  			if (grass.isAlive ()) 
+		  			{
+		  				/* Kijken of het toegestaan is om gras kapot te trappen. */
+		  				if (Display.FieldStats.grassCount >= 1000)
+		  				{
+		  					/* Gras kapot maken. */
+		  					grass.setDead ();
+		  				}
+	  					
+	  					/* Naar de plek gaan waar het gras lag. */
+	  					return where;
+		  			}
+		  	}
       }
-      
-      
       
       return null;
   }
