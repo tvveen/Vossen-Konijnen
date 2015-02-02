@@ -15,21 +15,26 @@ import Simulator.Main;
 
 public class GrassPanel {
 	
+	// Hier staan de standaard waarden van het grass in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 3;
 	private static int DEFAULT_MAX_AGE = 12;
 	private static double DEFAULT_BREEDING_PROBABILITY = 0.15;
 	private static int DEFAULT_MAX_LITTER_SIZE = 6;
 	
+	// Declareer een nieuw JPanel
 	private JPanel grassPanel;
 	
+	// Contructueer de JPanel
 	public GrassPanel()
 	{
+		// Stel vaste waarden aan de JPanel
 		grassPanel = new JPanel();
 		grassPanel.setLayout(null);
 		grassPanel.setBounds(1, 41, 500, 559);
 		grassPanel.setVisible(false);
 		
-		
+
+		// Defineer de velden voor de JPanel
 		JLabel grassLabel = new JLabel("Grass Variables");
 		grassLabel.setBounds(170, 10, 200, 20);
 		grassLabel.setFont(new Font("Bold", Font.BOLD, 22));
@@ -63,10 +68,12 @@ public class GrassPanel {
 		newGrassMaxLitterSize.setBounds(205, 170, 200, 30);
 		
 		
+		// Defineer de submit knop voor de JPanel
 		JButton change = new JButton("Change Value(s)");
 		change.setBounds(60, 300, 140, 30);
 		change.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent changeValues)
 			{
 				try
@@ -120,11 +127,12 @@ public class GrassPanel {
 			}
 		});
 		
-		
+		// Defineer de reset knop van de JPanel
 		JButton reset = new JButton("Default Value(s)");
 		reset.setBounds(210, 300, 140, 30);
 		reset.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent resetValue)
 			{
 				Grass.setBreedingAge(DEFAULT_BREEDING_AGE);
@@ -136,7 +144,7 @@ public class GrassPanel {
 		});
 		
 		
-		
+		// Zorg dat alle componenten aan de JPanel worden toegevoegd
 		grassPanel.add(grassLabel);
 		grassPanel.add(grassBreedingAge);
 		grassPanel.add(newGrassBreedingAge);
@@ -150,6 +158,7 @@ public class GrassPanel {
 		grassPanel.add(reset);
 	}
 	
+	// Methode om het JPanel weer te geven
 	public JPanel getGrassPanel()
 	{
 		return grassPanel;

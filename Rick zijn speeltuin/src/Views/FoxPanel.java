@@ -11,23 +11,27 @@ import Simulator.Main;
 
 public class FoxPanel {
 
+	// Hier staan de standaard waarden van de fox in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 3;
 	private static int DEFAULT_MAX_AGE = 150;
 	private static double DEFAULT_BREEDING_PROBABILITY = 0.08;
 	private static int DEFAULT_MAX_LITTER_SIZE = 8;
 	private static int DEFAULT_RABBIT_FOOD_VALUE = 5;
 	
+	// Declareer een nieuw JPanel
 	private JPanel foxPanel;
 	
+	// Contructueer de JPanel
 	public FoxPanel()
 	{
+		// Stel vaste waarden aan de JPanel
 		foxPanel = new JPanel();
 		foxPanel.setLayout(null);
 		foxPanel.setBounds(1, 41, 500, 559);
 		foxPanel.setVisible(true);
 		
 		
-		
+		// Defineer de velden voor de JPanel
 		JLabel foxLabel = new JLabel("Fox Variables");
 		foxLabel.setBounds(180, 10, 200, 20);
 		foxLabel.setFont(new Font("Bold", Font.BOLD, 22));
@@ -68,10 +72,12 @@ public class FoxPanel {
 		newFoxFoodValue.setBounds(205, 210, 200, 30);
 		
 		
+		// Defineer de submit knop voor de JPanel
 		JButton change = new JButton("Change Value(s)");
 		change.setBounds(60, 300, 140, 30);
 		change.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent changeValues)
 			{
 				try
@@ -138,11 +144,12 @@ public class FoxPanel {
 			}
 		});
 		
-		
+		// Defineer de reset knop van de JPanel
 		JButton reset = new JButton("Default Value(s)");
 		reset.setBounds(210, 300, 140, 30);
 		reset.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent resetValue)
 			{
 				Fox.setBreedingAge(DEFAULT_BREEDING_AGE);
@@ -154,7 +161,7 @@ public class FoxPanel {
 			}
 		});
 		
-		
+		// Zorg dat alle componenten aan de JPanel worden toegevoegd
 		foxPanel.add(foxLabel);
 		foxPanel.add(foxBreedingAge);
 		foxPanel.add(newFoxBreedingAge);
@@ -171,6 +178,7 @@ public class FoxPanel {
 		
 	}
 	
+	// Methode om het JPanel weer te geven
 	public JPanel getFoxPanel()
 	{
 		return foxPanel;

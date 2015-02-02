@@ -11,23 +11,27 @@ import Simulator.Main;
 
 public class WolfPanel {
 
+	// Hier staan de standaard waarden van de wolf in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 6;
 	private static int DEFAULT_MAX_AGE = 200;
 	private static double DEFAULT_BREEDING_PROBABILITY = 0.02;
 	private static int DEFAULT_MAX_LITTER_SIZE = 4;
 	private static int DEFAULT_FOX_FOOD_VALUE = 5;
 	
+	// Declareer een nieuw JPanel
 	private JPanel wolfPanel;
 	
+	// Contructueer de JPanel
 	public WolfPanel()
 	{
+		// Stel vaste waarden aan de JPanel
 		wolfPanel = new JPanel();
 		wolfPanel.setLayout(null);
 		wolfPanel.setBounds(1, 41, 500, 559);
 		wolfPanel.setVisible(true);
 		
 		
-		
+		// Defineer de velden voor de JPanel
 		JLabel wolfLabel = new JLabel("Wolf Variables");
 		wolfLabel.setBounds(180, 10, 200, 20);
 		wolfLabel.setFont(new Font("Bold", Font.BOLD, 22));
@@ -68,10 +72,12 @@ public class WolfPanel {
 		newWolfFoodValue.setBounds(205, 210, 200, 30);
 		
 		
+		// Defineer de submit knop voor de JPanel
 		JButton change = new JButton("Change Value(s)");
 		change.setBounds(60, 300, 140, 30);
 		change.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent changeValues)
 			{
 				try
@@ -138,11 +144,12 @@ public class WolfPanel {
 			}
 		});
 		
-		
+		// Defineer de reset knop van de JPanel
 		JButton reset = new JButton("Default Value(s)");
 		reset.setBounds(210, 300, 140, 30);
 		reset.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent resetValue)
 			{
 				Wolf.setBreedingAge(DEFAULT_BREEDING_AGE);
@@ -154,7 +161,7 @@ public class WolfPanel {
 			}
 		});
 		
-		
+		// Zorg dat alle componenten aan de JPanel worden toegevoegd
 		wolfPanel.add(wolfLabel);
 		wolfPanel.add(wolfBreedingAge);
 		wolfPanel.add(newWolfBreedingAge);
@@ -171,6 +178,7 @@ public class WolfPanel {
 		
 	}
 	
+	// Methode om het JPanel weer te geven
 	public JPanel getWolfPanel()
 	{
 		return wolfPanel;

@@ -1,5 +1,6 @@
 package Views;
 
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,22 +15,27 @@ import Simulator.Main;
 
 public class RabbitPanel {
 	
+	// Hier staan de standaard waarden van de rabbit in gesteld; gelijk aan die van de klasse
 	private static int DEFAULT_BREEDING_AGE = 1;
 	private static int DEFAULT_MAX_AGE = 100;
 	private static double DEFAULT_BREEDING_PROBABILITY = 0.10;
 	private static int DEFAULT_MAX_LITTER_SIZE = 12;
 	private static int DEFAULT_GRASS_FOOD_VALUE = 5;
 	
+	// Declareer een nieuw JPanel
 	private JPanel rabbitPanel;
 	
+	// Contructueer de JPanel
 	public RabbitPanel()
 	{
+		// Stel vaste waarden aan de JPanel
 		rabbitPanel = new JPanel();
 		rabbitPanel.setLayout(null);
 		rabbitPanel.setBounds(1, 41, 500, 559);
 		rabbitPanel.setVisible(false);
 		
 		
+		// Defineer de velden voor de JPanel
 		JLabel rabbitLabel = new JLabel("Rabbit Variables");
 		rabbitLabel.setBounds(160, 10, 200, 20);
 		rabbitLabel.setFont(new Font("Bold", Font.BOLD, 22));
@@ -70,10 +76,12 @@ public class RabbitPanel {
 		newRabbitFoodValue.setBounds(205, 210, 200, 30);
 		
 		
+		// Defineer de submit knop voor de JPanel
 		JButton change = new JButton("Change Value(s)");
 		change.setBounds(60, 300, 140, 30);
 		change.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent changeValues)
 			{
 				try
@@ -140,11 +148,12 @@ public class RabbitPanel {
 			}
 		});
 		
-		
+		// Defineer de reset knop van de JPanel
 		JButton reset = new JButton("Default Value(s)");
 		reset.setBounds(210, 300, 140, 30);
 		reset.addActionListener(new ActionListener()
 		{
+			// Declareer de actie voor deze knop
 			public void actionPerformed(ActionEvent resetValue)
 			{
 				Rabbit.setBreedingAge(DEFAULT_BREEDING_AGE);
@@ -156,7 +165,7 @@ public class RabbitPanel {
 			}
 		});
 		
-		
+		// Zorg dat alle componenten aan de JPanel worden toegevoegd
 		rabbitPanel.add(rabbitLabel);
 		rabbitPanel.add(rabbitBreedingAge);
 		rabbitPanel.add(newRabbitBreedingAge);
@@ -172,6 +181,7 @@ public class RabbitPanel {
 		rabbitPanel.add(reset);
 	}
 	
+	// Methode om het JPanel weer te geven
 	public JPanel getRabbitPanel()
 	{
 		return rabbitPanel;
