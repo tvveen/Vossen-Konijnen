@@ -61,7 +61,22 @@ public class FieldStats
         }
         for(Class key : counters.keySet()) {
             Counter info = counters.get(key);
-            buffer.append(info.getName());
+            String entityName;
+            switch (info.getName()) {
+            	case "Models.Rabbit":	entityName = "Rabbit";
+            							break;
+            	case "Models.Fox":		entityName = "Fox";
+            							break;
+            	case "Models.Grass":	entityName = "Grass";
+            							break;
+            	case "Models.Wolf":		entityName = "Wolf";
+            							break;
+            	case "Models.Hunter":	entityName = "Hunter";
+            							break;
+            	default:				entityName = info.getName();
+            							break;
+            }
+            buffer.append(entityName);
             buffer.append(": ");
             buffer.append(info.getCount());
             buffer.append(' ');
