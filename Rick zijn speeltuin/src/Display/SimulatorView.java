@@ -36,9 +36,6 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 public class SimulatorView extends JFrame
 {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	// Colors used for empty locations.

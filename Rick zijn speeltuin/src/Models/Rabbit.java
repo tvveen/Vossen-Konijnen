@@ -178,7 +178,7 @@ public class Rabbit extends Animal
     }
     
     
-    
+    // Defineer dmv de GUI settings de standaard waarden van rabbit
     public static void setBreedingAge(int breedingAge)
     {
     	BREEDING_AGE = breedingAge;

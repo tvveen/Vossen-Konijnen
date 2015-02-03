@@ -125,6 +125,8 @@ public class Grass extends Animal
         return age >= BREEDING_AGE;
     }
     
+    
+    // Defineer dmv de GUI settings de standaard waarden van grass
     public static void setBreedingAge(int breedingAge)
     {
     	BREEDING_AGE = breedingAge;

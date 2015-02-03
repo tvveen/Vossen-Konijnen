@@ -178,7 +178,7 @@ public class Fox extends Animal
     }
     
     
-    
+    // Defineer dmv de GUI settings de standaard waarden van fox
     public static void setBreedingAge(int breedingAge)
     {
     	BREEDING_AGE = breedingAge;

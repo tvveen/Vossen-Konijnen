@@ -54,12 +54,10 @@ public class Wolf extends Animal
         super(field, location);
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
-            //foodLevel = rand.nextInt(RABBIT_FOOD_VALUE) + rand.nextInt(FOX_FOOD_VALUE);
             foodLevel = rand.nextInt(FOX_FOOD_VALUE);
         }
         else {
             age = 0;
-            //foodLevel = RABBIT_FOOD_VALUE + FOX_FOOD_VALUE;
             foodLevel = FOX_FOOD_VALUE;
         }
     }
@@ -191,7 +189,7 @@ public class Wolf extends Animal
     }
     
     
-    
+    // Defineer dmv de GUI settings de standaard waarden van wolf
     public static void setBreedingAge(int breedingAge)
     {
     	BREEDING_AGE = breedingAge;
