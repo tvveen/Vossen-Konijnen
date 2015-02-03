@@ -97,10 +97,10 @@ public class SimulatorView extends JFrame
     	
     	
     	
-    	JMenu menu1 = new JMenu("Menu 1");
-    	menu.add(menu1);
-    	
-    	JMenuItem settingsMenu = new JMenuItem("Settings");
+    	JButton settingsMenu = new JButton("Settings");
+    	settingsMenu.setContentAreaFilled(false);
+    	settingsMenu.setBorderPainted(false);
+    	settingsMenu.setFocusPainted(false);
     	settingsMenu.addActionListener(new ActionListener()
     	{
     		public void actionPerformed(ActionEvent g)
@@ -116,16 +116,10 @@ public class SimulatorView extends JFrame
     			frame.add(settings.getPanel());
     			    			
     			frame.setVisible(true);
-    			
-    			
-    			
-    			
-
-    			
     		}
     	});
     	
-    	menu1.add(settingsMenu);    	
+    	menu.add(settingsMenu);
     	
     	
     	/*
@@ -424,7 +418,8 @@ public class SimulatorView extends JFrame
         }
         stats.countFinished();
 
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        //population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(stats.getPopulationDetails(field));
         fieldView.repaint();
     }
     
